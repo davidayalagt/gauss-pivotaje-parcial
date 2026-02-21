@@ -81,17 +81,14 @@ void CalcularMatrizTriangularSuperior(float matriz[N][N]) {
     for (int columnaPivote = 0; columnaPivote < ultimaColumna; columnaPivote++) {
         // En cada iteración, estamos en la posición diagonal de la matriz
         int filaPivote = columnaPivote;
-        char* mensaje = 0;
 
         // PASO 1: Promover la fila con el máximo valor absoluto a la posición del pivote
         PromoverFilaConMaximoAlPivote(matriz, filaPivote, columnaPivote);
-        sprintf(mensaje, "\nProcesando pivote %d:\n", columnaPivote);
-        MostrarMatriz(matriz, mensaje);
+        MostrarMatriz(matriz, "\nDespués del pivotaje:\n");
 
         // PASO 2: Hacer ceros en todos los elementos debajo del pivote
         HacerCerosLosElementosBajoElPivote(matriz, filaPivote, columnaPivote);
-        sprintf(mensaje, "\nEliminando elementos debalo del pivote %d:\n", columnaPivote);
-        MostrarMatriz(matriz, mensaje);
+        MostrarMatriz(matriz, "\nDespués de la eliminación:\n");
     }
 }
 
