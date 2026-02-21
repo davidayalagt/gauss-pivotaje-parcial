@@ -13,9 +13,16 @@ int main() {
     // variables/declaraciones
     float matrizDeCoeficientes[N][N];
 
+    InicializarMatriz(matrizDeCoeficientes);
+
     // entradas
+    LeerMatriz(matrizDeCoeficientes);
 
     // proceso
+    CalcularMatrizTriangularSuperior(matrizDeCoeficientes);
 
     // salida
+    MostrarMatriz(matrizDeCoeficientes);
+
+    return 0;
 }
