@@ -24,7 +24,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb92fba0-bc27-4781-8f5d-34a61966b4ea" name="Changes" comment="Definir dimension de la matriz y la variable donde almacenarla." />
+    <list default="true" id="cb92fba0-bc27-4781-8f5d-34a61966b4ea" name="Changes" comment="Definir dimension de la matriz y la variable donde almacenarla.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +90,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "temp5",
+    "git-widget-placeholder": "develop",
     "last_opened_file_path": "/home/dresdda/Projects/gauss-pivotaje-parcial",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
