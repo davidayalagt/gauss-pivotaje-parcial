@@ -41,3 +41,26 @@ void InicializarMatriz(float matriz[N][N]) {
         }
     }
 }
+
+// SUB-RUTINA
+// Lee los elementos de la matriz desde la entrada estándar.
+// El usuario ingresa los valores de cada fila separados por espacios,
+// y presiona Enter al final de cada fila.
+// Recibe: matriz (matriz que será llenada con los datos del usuario)
+// Devuelve: Nada (modifica la matriz directamente)
+
+void LeerMatriz(float matriz[N][N]) {
+    printf("Ingrese los valores de cada fila para la matriz de 4x4.\n\n");
+    // Recorrer cada fila de la matriz
+    for (int fila = 0; fila < N; fila++) {
+        // Mostrar instrucción al usuario
+        printf("Fila %d: ", fila);
+
+        // Recorrer cada columna de la fila actual
+        for (int columna = 0; columna < N; columna++) {
+            // Leer el valor desde la entrada estándar
+            scanf("%f", &matriz[fila][columna]);
+        }
+    }
+    printf("\n");
+}
