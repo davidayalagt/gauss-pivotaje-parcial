@@ -8,7 +8,7 @@ void PromoverFilaConMaximoAlPivote(float matriz[N][N], int filaPivote, int colum
 void HacerCerosLosElementosBajoElPivote(float matriz[N][N], int filaPivote, int columnaPivote);
 void IntercambiarFilas(float matriz[N][N], int fila1, int fila2);
 float Absoluto(float valor);
-void MostrarMatriz(float matriz[N][N]);
+void MostrarMatriz(float matriz[N][N], const char* mensaje);
 
 int main() {
     // variables/declaraciones
@@ -16,14 +16,17 @@ int main() {
 
     InicializarMatriz(matrizDeCoeficientes);
 
+
     // entradas
     LeerMatriz(matrizDeCoeficientes);
+
+    MostrarMatriz(matrizDeCoeficientes, "\nMatriz Ingresada:\n");
 
     // proceso
     CalcularMatrizTriangularSuperior(matrizDeCoeficientes);
 
     // salida
-    MostrarMatriz(matrizDeCoeficientes);
+    MostrarMatriz(matrizDeCoeficientes, "\nMatriz Triangular Superior:\n");
 
     return 0;
 }
@@ -73,18 +76,22 @@ void LeerMatriz(float matriz[N][N]) {
 
 void CalcularMatrizTriangularSuperior(float matriz[N][N]) {
     int ultimaColumna = N - 1;
-    
+
     // Procesar cada columna como pivote
     for (int columnaPivote = 0; columnaPivote < ultimaColumna; columnaPivote++) {
-        
         // En cada iteración, estamos en la posición diagonal de la matriz
         int filaPivote = columnaPivote;
-        
+        char* mensaje = 0;
+
         // PASO 1: Promover la fila con el máximo valor absoluto a la posición del pivote
         PromoverFilaConMaximoAlPivote(matriz, filaPivote, columnaPivote);
-        
+        sprintf(mensaje, "\nProcesando pivote %d:\n", columnaPivote);
+        MostrarMatriz(matriz, mensaje);
+
         // PASO 2: Hacer ceros en todos los elementos debajo del pivote
         HacerCerosLosElementosBajoElPivote(matriz, filaPivote, columnaPivote);
+        sprintf(mensaje, "\nEliminando elementos debalo del pivote %d:\n", columnaPivote);
+        MostrarMatriz(matriz, mensaje);
     }
 }
 
@@ -97,7 +104,7 @@ void CalcularMatrizTriangularSuperior(float matriz[N][N]) {
 // Devuelve: Nada (modifica la matriz directamente)
 
 void PromoverFilaConMaximoAlPivote(float matriz[N][N], int filaPivote, int columnaPivote) {
-    int ultimaFila = N - 1;
+     int ultimaFila = N - 1;
     
     // Inicializar la búsqueda del máximo
     int filaDelMaximo = filaPivote;
@@ -123,10 +130,9 @@ void PromoverFilaConMaximoAlPivote(float matriz[N][N], int filaPivote, int colum
     // Validación temprana: verificar que el pivote no sea cero
     // Si después de promover la mejor fila el pivote sigue siendo cero,
     // la matriz es singular y no puede ser reducida
-    float elementoPivote = matriz[filaPivote][columnaPivote];
+     float elementoPivote = matriz[filaPivote][columnaPivote];
     if (elementoPivote == 0) {
         printf("Error: El pivote es cero. Matriz singular. No se puede continuar.\n");
-        return;
     }
 }
 
@@ -138,15 +144,15 @@ void PromoverFilaConMaximoAlPivote(float matriz[N][N], int filaPivote, int colum
 // Devuelve: Nada (modifica la matriz directamente)
 
 void HacerCerosLosElementosBajoElPivote(float matriz[N][N], int filaPivote, int columnaPivote) {
-    int ultimaFila = N - 1;
-    int ultimaColumna = N - 1;
+     int ultimaFila = N - 1;
+     int ultimaColumna = N - 1;
     
     // Recorrer todas las filas debajo del pivote
     for (int filaAModificar = filaPivote + 1; filaAModificar <= ultimaFila; filaAModificar++) {
         
         // Obtener el elemento pivote y el elemento a eliminar
-        float elementoPivote = matriz[filaPivote][columnaPivote];
-        float elementoBajoPivote = matriz[filaAModificar][columnaPivote];
+         float elementoPivote = matriz[filaPivote][columnaPivote];
+         float elementoBajoPivote = matriz[filaAModificar][columnaPivote];
         
         // Verificar que el pivote no sea cero
         if (elementoPivote == 0) {
@@ -155,7 +161,7 @@ void HacerCerosLosElementosBajoElPivote(float matriz[N][N], int filaPivote, int 
         }
         
         // Calcular el factor de multiplicación
-        float factorDeMultiplicacion = elementoBajoPivote / elementoPivote;
+         float factorDeMultiplicacion = elementoBajoPivote / elementoPivote;
         
         // Aplicar la operación a toda la fila
         // Fila_Actual = Fila_Actual - (Factor × Fila_Pivote)
@@ -208,8 +214,8 @@ float Absoluto(float valor) {
 // Recibe: matriz (matriz a mostrar)
 // Devuelve: Nada
 
-void MostrarMatriz(float matriz[N][N]) {
-    printf("\nMatriz Triangular Superior:\n");
+void MostrarMatriz(float matriz[N][N], const char* mensaje) {
+    printf("%s", mensaje);
     printf("============================\n\n");
     
     for (int fila = 0; fila < N; fila++) {
