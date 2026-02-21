@@ -5,3 +5,5 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(.)
 
+add_executable(gauss_pivotaje_parcial
+        main.c)
