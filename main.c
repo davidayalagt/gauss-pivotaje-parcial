@@ -26,3 +26,18 @@ int main() {
 
     return 0;
 }
+
+// SUB-RUTINA
+// Inicializa todos los elementos de la matriz con el valor 0.
+// Recibe: matriz (matriz que será inicializada)
+// Devuelve: Nada (modifica la matriz directamente)
+void InicializarMatriz(float matriz[N][N]) {
+    // Recorrer cada fila de la matriz
+    for (int fila = 0; fila < N; fila++) {
+        // Recorrer cada columna de la fila actual
+        for (int columna = 0; columna < N; columna++) {
+            // Asignar el valor 0 a cada elemento
+            matriz[fila][columna] = (float)0.0;
+        }
+    }
+}
