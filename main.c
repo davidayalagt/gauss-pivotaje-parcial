@@ -16,7 +16,6 @@ int main() {
 
     InicializarMatriz(matrizDeCoeficientes);
 
-
     // entradas
     LeerMatriz(matrizDeCoeficientes);
 
@@ -58,7 +57,7 @@ void LeerMatriz(float matriz[N][N]) {
     // Recorrer cada fila de la matriz
     for (int fila = 0; fila < N; fila++) {
         // Mostrar instrucción al usuario
-        printf("Fila %d: ", fila);
+        printf("Fila %d: ", fila + 1);
 
         // Recorrer cada columna de la fila actual
         for (int columna = 0; columna < N; columna++) {
@@ -82,6 +81,9 @@ void CalcularMatrizTriangularSuperior(float matriz[N][N]) {
         // En cada iteración, estamos en la posición diagonal de la matriz
         int filaPivote = columnaPivote;
 
+        printf("Pivote actual (%d,%d)\n", filaPivote + 1, columnaPivote + 1);
+        printf("Fila original del pivote: %d\n", filaPivote + 1);
+
         // PASO 1: Promover la fila con el máximo valor absoluto a la posición del pivote
         PromoverFilaConMaximoAlPivote(matriz, filaPivote, columnaPivote);
         MostrarMatriz(matriz, "\nDespués del pivotaje:\n");
@@ -101,7 +103,7 @@ void CalcularMatrizTriangularSuperior(float matriz[N][N]) {
 // Devuelve: Nada (modifica la matriz directamente)
 
 void PromoverFilaConMaximoAlPivote(float matriz[N][N], int filaPivote, int columnaPivote) {
-     int ultimaFila = N - 1;
+    int ultimaFila = N - 1;
     
     // Inicializar la búsqueda del máximo
     int filaDelMaximo = filaPivote;
@@ -117,17 +119,20 @@ void PromoverFilaConMaximoAlPivote(float matriz[N][N], int filaPivote, int colum
             filaDelMaximo = fila;
         }
     }
-    
+
+    printf("Valor absoluto máximo para la columna %d: %f\n", columnaPivote + 1, valorMaximo);
+
     // Si la fila con el valor máximo no es la fila del pivote, intercambiarlas
     // Esto asegura que el elemento de mayor valor absoluto esté en la posición del pivote
     if (filaDelMaximo != filaPivote) {
+        printf("Nueva fila pivote %d\n", filaDelMaximo + 1);
         IntercambiarFilas(matriz, filaPivote, filaDelMaximo);
     }
     
     // Validación temprana: verificar que el pivote no sea cero
     // Si después de promover la mejor fila el pivote sigue siendo cero,
     // la matriz es singular y no puede ser reducida
-     float elementoPivote = matriz[filaPivote][columnaPivote];
+    float elementoPivote = matriz[filaPivote][columnaPivote];
     if (elementoPivote == 0) {
         printf("Error: El pivote es cero. Matriz singular. No se puede continuar.\n");
     }
@@ -146,7 +151,7 @@ void HacerCerosLosElementosBajoElPivote(float matriz[N][N], int filaPivote, int 
     
     // Recorrer todas las filas debajo del pivote
     for (int filaAModificar = filaPivote + 1; filaAModificar <= ultimaFila; filaAModificar++) {
-        
+
         // Obtener el elemento pivote y el elemento a eliminar
          float elementoPivote = matriz[filaPivote][columnaPivote];
          float elementoBajoPivote = matriz[filaAModificar][columnaPivote];
@@ -159,7 +164,14 @@ void HacerCerosLosElementosBajoElPivote(float matriz[N][N], int filaPivote, int 
         
         // Calcular el factor de multiplicación
          float factorDeMultiplicacion = elementoBajoPivote / elementoPivote;
-        
+
+        printf("Eliminacion en fila: %d\n", filaAModificar + 1);
+        printf("Elemento pivote: %10.4f\n", elementoPivote);
+        printf("Elemento bajo el pivote: %10.4f\n", elementoBajoPivote);
+        printf("Factor de multiplicacion: (%10.4f / %10.4f) = %10.4f\n", elementoBajoPivote, elementoPivote, factorDeMultiplicacion);
+        printf("Operación: Fila%d_nueva = Fila%d - (%10.4f * Fila%d)\n", filaAModificar + 1, filaAModificar + 1, factorDeMultiplicacion, filaPivote + 1);
+
+
         // Aplicar la operación a toda la fila
         // Fila_Actual = Fila_Actual - (Factor × Fila_Pivote)
         for (int columna = columnaPivote; columna <= ultimaColumna; columna++) {
@@ -181,7 +193,9 @@ void HacerCerosLosElementosBajoElPivote(float matriz[N][N], int filaPivote, int 
 
 void IntercambiarFilas(float matriz[N][N], int fila1, int fila2) {
     int ultimaColumna = N - 1;
-    
+
+    printf("Intercambiando filas %d <--> %d\n", fila1 + 1, fila2 + 1);
+
     for (int columna = 0; columna <= ultimaColumna; columna++) {
         // Guardar los valores de ambas filas en la columna actual
         float valorFila1 = matriz[fila1][columna];
